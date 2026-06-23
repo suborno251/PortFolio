@@ -39,7 +39,7 @@ export default function App() {
           spy.disconnect();
           ro.disconnect();
         };
-      }, []); // empty [] = runs once after first render
+      }, []);
 
 
   return (
@@ -62,21 +62,14 @@ export default function App() {
         <p className="hero-eyebrow">// full-stack developer</p>
         <h1 className="hero-name">Suborno Das<span className="cursor">_</span></h1>
         <p className="hero-role">I build things for the web.</p>
-        <div style={{
-          display:"flex",
-          justifyContent:"Center",
-          alignItems:"center",
-          flexDirection:"column",
-          }}>
-        <p className="hero-bio">
-          Crafting reliable backends and clean frontends — from Laravel APIs and Node.js services
-          to real-time, AI-integrated web apps. Based in West Bengal, India.
-        </p>
-        <div className="btn-row">
-          <a href="#projects" className="btn btn-primary">View Projects</a>
-          <a href="#contact" className="btn btn-ghost">Get in Touch</a>
-        </div>
-        </div>
+          <p className="hero-bio">
+            Crafting reliable backends and clean frontends — from Laravel APIs and Node.js services
+            to real-time, AI-integrated web apps. Based in West Bengal, India.
+          </p>
+          <div className="btn-row">
+            <a href="#projects" className="btn btn-primary">View Projects</a>
+            <a href="#contact" className="btn btn-ghost">Get in Touch</a>
+          </div>
         <div className="hero-scroll">
           <span className="scroll-line"></span>
           scroll to explore
@@ -87,8 +80,16 @@ export default function App() {
 
       {/* ABOUT  */}
       <section id="about">
-        <p className="section-eyebrow reveal">01 / about</p>
-        <h2 className="section-title reveal">A bit about me</h2>
+        <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+        }}>
+
+          <p className="section-eyebrow reveal">01 / about</p>
+          <h2 className="section-title reveal">A bit about me</h2>
+        </div>
 
         <div className="about-grid">
           <div className="about-text reveal">
