@@ -1,9 +1,10 @@
 interface Project {
-  badge:       string;
-  name:        string;
+  badge: string;
+  name: string;
   description: string;
-  stack:       string;
-  is_wip:      boolean;
+  stack: string;
+  is_wip: boolean;
+  website_link?: string;
 }
 
 export default function Projects({ data }: { data: Project[] }) {
@@ -16,7 +17,17 @@ export default function Projects({ data }: { data: Project[] }) {
               {project.badge}
             </span>
           </div>
-          <div className="project-name">{project.name}</div>
+          {project.website_link === "" ? (
+            <div className="project-name">{project.name}</div>
+          ) : (
+            <a
+              href={project.website_link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="project-name">{project.name}</div>
+            </a>
+          )}
           <p className="project-desc">{project.description}</p>
           <div className="stack-chips">
             {project.stack.split(',').map((tech, j) => (
