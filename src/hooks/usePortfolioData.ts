@@ -35,12 +35,12 @@ const PROJECTS: Project[] = [
     website_link: `https://whistle-7qsn.onrender.com/`
   },
   {
-    badge: 'AI · Full-Stack',
-    name: 'ZEFA AI Image',
-    description: 'GenAI microservice built with FastAPI and Google Gemini API, integrated into a Laravel + Amazon S3 ERP system for automated product visualization with real-time SSE streaming and canvas-based watermarking.',
-    stack: 'FastAPI, Python, Gemini API, Laravel, AWS S3, Node.js, TypeScript, SSE',
+    badge: 'Node.JS · React · PostgreSQL',
+    name: 'FactoryIQ',
+    description: 'A full-stack web application that ingests AI-generated CCTV events, stores them in a database, computes productivity metrics, and displays them in a real-time dashboard.',
+    stack: 'Node.js, TypeScript, React, Redux, Prisma, TailwindCSS',
     is_wip: false,
-    website_link: ``
+    website_link: `https://camera-activity-frontend.vercel.app/`
   },
   {
     badge: 'ML · Full-Stack',
@@ -48,13 +48,13 @@ const PROJECTS: Project[] = [
     description: 'ML-powered housing price prediction application with a React JS frontend and FastAPI backend, trained on the California Housing dataset using scikit-learn and HuggingFace.',
     stack: 'React JS, FastAPI, HuggingFace, scikit-learn, Python',
     is_wip: false,
-    website_link: ``
+    website_link: `https://california-housing-price-prediction-ten.vercel.app/`
   },
   {
-    badge: 'React · Laravel',
-    name: 'Cigarette Lens',
-    description: 'A niche review platform for cigarettes — inspired by Letterboxd. Full community feature set: ratings, reviews, want-to-try lists, and brand discovery.',
-    stack: 'Laravel, React, Vite, Tailwind',
+    badge: 'Next.JS · PostgreSQL',
+    name: 'No Yes-Man',
+    description: "An AI content pipeline where two different models fact-check and argue with each other before you see the output — instead of just trusting one model's first draft.",
+    stack: 'Next.JS, React.JS, Gemini, Deepseek',
     is_wip: true,
     website_link: ``
   },
