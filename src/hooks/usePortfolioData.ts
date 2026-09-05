@@ -117,8 +117,11 @@ const BIO: Bio[] = [
   { paragraph: '<p>When I\'m not writing code, I\'m probably thinking about the next side project, exploring Linux configurations, or researching something niche on the internet.</p>' },
 ];
 
+export const EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'dsuborno0@gmail.com';
+
 export function usePortfolioData() {
   return {
+    email:      EMAIL,
     projects:   PROJECTS,
     skills:     SKILLS,
     experience: EXPERIENCE,

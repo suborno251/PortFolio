@@ -1,12 +1,13 @@
 import './App.css'
 import { useEffect } from 'react';
+import { Mail } from 'lucide-react';
 import Projects from './components/Projects/projects';
 import Contact from './components/Contact/contact';
 import { usePortfolioData, type Skill } from './hooks/usePortfolioData';
 
 export default function App() {
 
-  const { projects, skills, experience, bio, loading } = usePortfolioData();
+  const { projects, skills, experience, bio, email, loading } = usePortfolioData();
 
   const skillGroups = skills.reduce((acc: Record<string, Skill[]>, skill: Skill) => {
     if (!acc[skill.category]) acc[skill.category] = [];
@@ -177,8 +178,17 @@ export default function App() {
       <hr className="soft" />
       <Contact />
       <footer>
-        <span>© 2026 Suborno Das</span>
-        <span>Designed &amp; built by me</span>
+        <span className="footer-side left">© 2026 Suborno Das</span>
+        <a
+          href={`mailto:${email}?subject=Hiring%20Inquiry%20-%20Suborno%20Das`}
+          className="footer-hire-btn"
+          title={`Send email to ${email}`}
+          aria-label="Send email to hire Suborno Das"
+        >
+          <Mail size={15} />
+          <span>Hire Me</span>
+        </a>
+        <span className="footer-side right">Designed &amp; built by me</span>
       </footer>
     </>
   );
