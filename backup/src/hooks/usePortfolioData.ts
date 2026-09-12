@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 export interface Project {
   badge:              string;
   name:               string;
@@ -57,8 +55,8 @@ const PROJECTS: Project[] = [
     name: 'No Yes-Man',
     description: "An AI content pipeline where two different models fact-check and argue with each other before you see the output — instead of just trusting one model's first draft.",
     stack: 'Next.JS, React.JS, Gemini, Deepseek',
-    is_wip: false,
-    website_link: `https://no-yesman.vercel.app/`
+    is_wip: true,
+    website_link: ``
   },
 ];
 
@@ -119,36 +117,12 @@ const BIO: Bio[] = [
   { paragraph: '<p>When I\'m not writing code, I\'m probably thinking about the next side project, exploring Linux configurations, or researching something niche on the internet.</p>' },
 ];
 
-export const EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'dsuborno0@gmail.com';
-
 export function usePortfolioData() {
-  const [projects, setProjects] = useState<Project[]>(PROJECTS);
-  const [skills, setSkills] = useState<Skill[]>(SKILLS);
-  const [experience, setExperience] = useState<Experience[]>(EXPERIENCE);
-  const [bio, setBio] = useState<Bio[]>(BIO);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    fetch('https://sd.my-board.org/wp-json/portfolio/v1/options')
-      .then(res => res.json())
-      .then(data => {
-        if (data.projects) setProjects(data.projects);
-        if (data.skills) setSkills(data.skills);
-        if (data.experience) setExperience(data.experience);
-        if (data.bio) setBio(data.bio);
-      })
-      .catch(console.error)
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
   return {
-    email: EMAIL,
-    projects,
-    skills,
-    experience,
-    bio,
-    loading,
+    projects:   PROJECTS,
+    skills:     SKILLS,
+    experience: EXPERIENCE,
+    bio:        BIO,
+    loading:    false,
   };
 }
