@@ -1,10 +1,12 @@
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-
+import { Mail, Download } from 'lucide-react';
+import { EMAIL } from '../../hooks/usePortfolioData';
 
 const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const CV_URL      = import.meta.env.VITE_CV_URL || '/Suborno_Das_CV.pdf';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -88,8 +90,29 @@ export default function Contact() {
         </form>
 
         <div className="contact-links" style={{ marginTop: '2.5rem' }}>
-          <a href="https://github.com/" target="_blank" className="btn btn-ghost">GitHub</a>
-          <a href="https://linkedin.com/in/" target="_blank" className="btn btn-ghost">LinkedIn</a>
+          <a href="https://github.com/suborno251" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">GitHub</a>
+          <a href="https://www.linkedin.com/in/suborno-das-b05213233/" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">LinkedIn</a>
+          <a
+            href={CV_URL}
+            download="Suborno_Das_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn contact-cv-btn"
+            title="Download Suborno Das CV"
+            aria-label="Download CV of Suborno Das"
+          >
+            <Download size={15} />
+            <span>Download CV</span>
+          </a>
+          <a
+            href={`mailto:${EMAIL}?subject=Hiring%20Inquiry%20-%20Suborno%20Das`}
+            className="btn btn-primary contact-hire-btn"
+            title={`Send email to ${EMAIL}`}
+            aria-label="Send email to hire Suborno Das"
+          >
+            <Mail size={15} />
+            <span>Hire Me</span>
+          </a>
         </div>
       </div>
     </section>

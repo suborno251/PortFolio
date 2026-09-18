@@ -1,13 +1,14 @@
-import './App.css'
+import './App.css';
 import { useEffect } from 'react';
-import { Mail } from 'lucide-react';
+import { Code, Layers, Database, Terminal, Cpu } from 'lucide-react';
 import Projects from './components/Projects/projects';
 import Contact from './components/Contact/contact';
 import { usePortfolioData, type Skill } from './hooks/usePortfolioData';
+import ShaderGradientCanvas from './components/Visuals/ShaderGradientCanvas';
+import Hero3DScene from './components/Visuals/Hero3DScene';
 
 export default function App() {
-
-  const { projects, skills, experience, bio, email, loading } = usePortfolioData();
+  const { projects, skills, experience, bio, loading } = usePortfolioData();
 
   const skillGroups = skills.reduce((acc: Record<string, Skill[]>, skill: Skill) => {
     if (!acc[skill.category]) acc[skill.category] = [];
@@ -69,17 +70,40 @@ export default function App() {
 
       {/* HERO */}
       <section id="hero">
-        <p className="hero-eyebrow">// full-stack developer</p>
-        <h1 className="hero-name">Suborno Das<span className="cursor">_</span></h1>
-        <p className="hero-role">I build things for the web.</p>
-        <p className="hero-bio">
-          Crafting reliable backends and clean frontends — from Laravel APIs and Node.js services
-          to real-time, AI-integrated web apps. Based in West Bengal, India.
-        </p>
-        <div className="btn-row">
-          <a href="#projects" className="btn btn-primary">View Projects</a>
-          <a href="#contact" className="btn btn-ghost">Get in Touch</a>
+        {/* Interactive Fluid WebGL Shader Gradient */}
+        <ShaderGradientCanvas opacity={0.5} speed={0.85} />
+        <div className="hero-gradient-fade" />
+
+        <div className="hero-container">
+          <div className="hero-text-col">
+            <p className="hero-eyebrow">// full-stack developer</p>
+            <h1 className="hero-name">Suborno Das<span className="cursor">_</span></h1>
+            <p className="hero-role">I build things for the web.</p>
+            <p className="hero-bio">
+              Crafting reliable backends and clean frontends — from Laravel APIs and Node.js services
+              to real-time, AI-integrated web apps. Based in West Bengal, India.
+            </p>
+            <div className="btn-row">
+              <a href="#projects" className="btn btn-primary">View Projects</a>
+              <a href="#contact" className="btn btn-ghost">Get in Touch</a>
+            </div>
+            <div className="hero-tech-chips">
+              <span className="hero-chip">Laravel</span>
+              <span className="hero-chip">Node.js</span>
+              <span className="hero-chip">React</span>
+              <span className="hero-chip">Three.js</span>
+              <span className="hero-chip">Next.js</span>
+              <span className="hero-chip">FastAPI</span>
+              <span className="hero-chip">MySQL</span>
+              <span className="hero-chip">PostgreSQL</span>
+            </div>
+          </div>
+
+          <div className="hero-visual-col">
+            <Hero3DScene />
+          </div>
         </div>
+
         <div className="hero-scroll">
           <span className="scroll-line"></span>
           scroll to explore
@@ -128,14 +152,35 @@ export default function App() {
         <p className="section-eyebrow reveal">02 / skills</p>
         <h2 className="section-title reveal">What I work with</h2>
 
-        <div className="skill-groups">
+        <div className="skills-bento-grid">
           {Object.entries(skillGroups).map(([category, tags], i) => (
-            <div className="reveal" key={i}>
-              <div className="skill-group-label">{category}</div>
+            <div
+              className={`skill-bento-card ${category === 'Concepts' ? 'bento-wide' : ''} reveal`}
+              key={i}
+            >
+              <div className="skill-card-header">
+                <div className="skill-card-title-group">
+                  <span className="skill-category-icon">
+                    {category === 'Languages' && <Code size={15} />}
+                    {category === 'Frameworks' && <Layers size={15} />}
+                    {category === 'Databases' && <Database size={15} />}
+                    {category === 'Tools & DevOps' && <Terminal size={15} />}
+                    {category === 'Concepts' && <Cpu size={15} />}
+                  </span>
+                  <h3 className="skill-group-label">{category}</h3>
+                </div>
+                <span className="skill-count">{tags.length} skills</span>
+              </div>
+
               <div className="skill-tags">
                 {tags.map((skill, j) => (
-                  <span className={`tag ${skill.is_learning ? 'learning' : ''}`} key={j}>
-                    {skill.tag}{skill.is_learning ? ' ↗' : ''}
+                  <span
+                    className={`tag ${skill.is_learning ? 'learning' : ''}`}
+                    key={j}
+                    title={skill.is_learning ? 'Currently learning' : `${skill.tag} (Production ready)`}
+                  >
+                    {skill.tag}
+                    {skill.is_learning && <span className="learning-indicator">↗</span>}
                   </span>
                 ))}
               </div>
@@ -155,7 +200,7 @@ export default function App() {
 
       <hr className="soft" />
 
-      {/* EXPERIENCE*/}
+      {/* EXPERIENCE */}
       <section id="experience">
         <p className="section-eyebrow reveal">04 / experience</p>
         <h2 className="section-title reveal">Where I've worked</h2>
@@ -178,18 +223,13 @@ export default function App() {
       </section>
 
       <hr className="soft" />
+
+      {/* CONTACT */}
       <Contact />
+
+      {/* FOOTER */}
       <footer>
         <span className="footer-side left">© 2026 Suborno Das</span>
-        <a
-          href={`mailto:${email}?subject=Hiring%20Inquiry%20-%20Suborno%20Das`}
-          className="footer-hire-btn"
-          title={`Send email to ${email}`}
-          aria-label="Send email to hire Suborno Das"
-        >
-          <Mail size={15} />
-          <span>Hire Me</span>
-        </a>
         <span className="footer-side right">Designed &amp; built by me</span>
       </footer>
     </>

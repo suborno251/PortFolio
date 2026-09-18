@@ -75,7 +75,7 @@ const SKILLS: Skill[] = [
   { category: 'Frameworks',     tag: 'Express.js',    is_learning: false },
   { category: 'Frameworks',     tag: 'Angular',       is_learning: false },
   { category: 'Frameworks',     tag: 'FastAPI',       is_learning: false },
-  { category: 'Frameworks',     tag: 'React',         is_learning: true  },
+  { category: 'Frameworks',     tag: 'React',         is_learning: false  },
   // Databases
   { category: 'Databases',      tag: 'MySQL',         is_learning: false },
   { category: 'Databases',      tag: 'PostgreSQL',    is_learning: false },
@@ -87,7 +87,7 @@ const SKILLS: Skill[] = [
   { category: 'Tools & DevOps', tag: 'AWS S3',        is_learning: false },
   { category: 'Tools & DevOps', tag: 'Postman',       is_learning: false },
   { category: 'Tools & DevOps', tag: 'CI/CD',         is_learning: false },
-  { category: 'Tools & DevOps', tag: 'Linux (Arch)',  is_learning: false },
+  { category: 'Tools & DevOps', tag: 'Linux',         is_learning: false },
   // Concepts
   { category: 'Concepts',       tag: 'REST API',      is_learning: false },
   { category: 'Concepts',       tag: 'JWT Auth',      is_learning: false },
