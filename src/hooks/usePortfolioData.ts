@@ -28,22 +28,22 @@ export interface Bio {
 }
 
 const PROJECTS: Project[] = [
-  {
-    badge: 'Laravel · React',
-    name: 'Whistle',
-    description: `A frontend design of a React-backed-laravel site thats made by replacing Laravel's Blade template, currently running on Render with Docker backed up`,
-    stack: 'Laravel, PHP, jQuery, Bootstrap, Docker, React, TypeScript',
-    is_wip: false,
-    website_link: `#`
-  },
-  {
-    badge: 'Node.JS · React · PostgreSQL',
-    name: 'FactoryIQ',
-    description: 'A full-stack web application that ingests AI-generated CCTV events, stores them in a database, computes productivity metrics, and displays them in a real-time dashboard.',
-    stack: 'Node.js, TypeScript, React, Redux, Prisma, TailwindCSS',
-    is_wip: false,
-    website_link: `https://camera-activity-frontend.vercel.app/`
-  },
+  // {
+  //   badge: 'Laravel · React',
+  //   name: 'Whistle',
+  //   description: `A frontend design of a React-backed-laravel site thats made by replacing Laravel's Blade template, currently running on Render with Docker backed up`,
+  //   stack: 'Laravel, PHP, jQuery, Bootstrap, Docker, React, TypeScript',
+  //   is_wip: false,
+  //   website_link: `#`
+  // },
+  // {
+  //   badge: 'Node.JS · React · PostgreSQL',
+  //   name: 'FactoryIQ',
+  //   description: 'A full-stack web application that ingests AI-generated CCTV events, stores them in a database, computes productivity metrics, and displays them in a real-time dashboard.',
+  //   stack: 'Node.js, TypeScript, React, Redux, Prisma, TailwindCSS',
+  //   is_wip: false,
+  //   website_link: `https://camera-activity-frontend.vercel.app/`
+  // },
   {
     badge: 'ML · Full-Stack',
     name: 'California Housing Predictor',
