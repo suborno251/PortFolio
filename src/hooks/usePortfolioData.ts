@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
     description: `A frontend design of a React-backed-laravel site thats made by replacing Laravel's Blade template, currently running on Render with Docker backed up`,
     stack: 'Laravel, PHP, jQuery, Bootstrap, Docker, React, TypeScript',
     is_wip: false,
-    website_link: `https://whistle-7qsn.onrender.com/`
+    website_link: `#`
   },
   {
     badge: 'Node.JS · React · PostgreSQL',
