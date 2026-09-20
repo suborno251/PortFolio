@@ -73,9 +73,10 @@ const SKILLS: Skill[] = [
   { category: 'Frameworks',     tag: 'Laravel',       is_learning: false },
   { category: 'Frameworks',     tag: 'Node.js',       is_learning: false },
   { category: 'Frameworks',     tag: 'Express.js',    is_learning: false },
+  { category: 'Frameworks',     tag: 'Next.js',       is_learning: false },
   { category: 'Frameworks',     tag: 'Angular',       is_learning: false },
   { category: 'Frameworks',     tag: 'FastAPI',       is_learning: false },
-  { category: 'Frameworks',     tag: 'React',         is_learning: false  },
+  { category: 'Frameworks',     tag: 'React',         is_learning: false },
   // Databases
   { category: 'Databases',      tag: 'MySQL',         is_learning: false },
   { category: 'Databases',      tag: 'PostgreSQL',    is_learning: false },
