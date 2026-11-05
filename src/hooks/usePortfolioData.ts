@@ -1,155 +1,16 @@
-import { useState, useEffect } from 'react';
+import rawData from '../data/portfolio.json';
+import type { PortfolioData } from '../types/portfolio';
 
-export interface Project {
-  badge:              string;
-  name:               string;
-  description:        string;
-  stack:              string;
-  is_wip:             boolean;
-  website_link?:      string;
-}
+export * from '../types/portfolio';
 
-export interface Skill {
-  category:    string;
-  tag:         string;
-  is_learning: boolean;
-}
+const data = rawData as PortfolioData;
 
-export interface Experience {
-  role:       string;
-  company:    string;
-  date_range: string;
-  is_current: boolean;
-  points:     string;
-}
+export const EMAIL = import.meta.env.VITE_CONTACT_EMAIL || data.email;
 
-export interface Bio {
-  paragraph: string;
-}
-
-const PROJECTS: Project[] = [
-  // {
-  //   badge: 'Laravel · React',
-  //   name: 'Whistle',
-  //   description: `A frontend design of a React-backed-laravel site thats made by replacing Laravel's Blade template, currently running on Render with Docker backed up`,
-  //   stack: 'Laravel, PHP, jQuery, Bootstrap, Docker, React, TypeScript',
-  //   is_wip: false,
-  //   website_link: `#`
-  // },
-  // {
-  //   badge: 'Node.JS · React · PostgreSQL',
-  //   name: 'FactoryIQ',
-  //   description: 'A full-stack web application that ingests AI-generated CCTV events, stores them in a database, computes productivity metrics, and displays them in a real-time dashboard.',
-  //   stack: 'Node.js, TypeScript, React, Redux, Prisma, TailwindCSS',
-  //   is_wip: false,
-  //   website_link: `https://camera-activity-frontend.vercel.app/`
-  // },
-  {
-    badge: 'ML · Full-Stack',
-    name: 'California Housing Predictor',
-    description: 'ML-powered housing price prediction application with a React JS frontend and FastAPI backend, trained on the California Housing dataset using scikit-learn and HuggingFace.',
-    stack: 'React JS, FastAPI, HuggingFace, scikit-learn, Python',
-    is_wip: false,
-    website_link: `https://california-housing-price-prediction-ten.vercel.app/`
-  },
-  {
-    badge: 'Next.JS · PostgreSQL',
-    name: 'No Yes-Man',
-    description: "An AI content pipeline where two different models fact-check and argue with each other before you see the output — instead of just trusting one model's first draft.",
-    stack: 'Next.JS, React.JS, Gemini, Deepseek',
-    is_wip: false,
-    website_link: `https://no-yesman.vercel.app/`
-  },
-];
-
-const SKILLS: Skill[] = [
-  // Languages
-  { category: 'Languages',      tag: 'PHP',           is_learning: false },
-  { category: 'Languages',      tag: 'TypeScript',    is_learning: false },
-  { category: 'Languages',      tag: 'JavaScript',    is_learning: false },
-  { category: 'Languages',      tag: 'Python',        is_learning: false },
-  { category: 'Languages',      tag: 'Go',            is_learning: true  },
-  // Frameworks
-  { category: 'Frameworks',     tag: 'Laravel',       is_learning: false },
-  { category: 'Frameworks',     tag: 'Node.js',       is_learning: false },
-  { category: 'Frameworks',     tag: 'Express.js',    is_learning: false },
-  { category: 'Frameworks',     tag: 'Next.js',       is_learning: false },
-  { category: 'Frameworks',     tag: 'Angular',       is_learning: false },
-  { category: 'Frameworks',     tag: 'FastAPI',       is_learning: false },
-  { category: 'Frameworks',     tag: 'React',         is_learning: false },
-  // Databases
-  { category: 'Databases',      tag: 'MySQL',         is_learning: false },
-  { category: 'Databases',      tag: 'PostgreSQL',    is_learning: false },
-  { category: 'Databases',      tag: 'MongoDB',       is_learning: false },
-  { category: 'Databases',      tag: 'Redis',         is_learning: false },
-  // Tools
-  { category: 'Tools & DevOps', tag: 'Docker',        is_learning: false },
-  { category: 'Tools & DevOps', tag: 'Git',           is_learning: false },
-  { category: 'Tools & DevOps', tag: 'AWS S3',        is_learning: false },
-  { category: 'Tools & DevOps', tag: 'Postman',       is_learning: false },
-  { category: 'Tools & DevOps', tag: 'CI/CD',         is_learning: false },
-  { category: 'Tools & DevOps', tag: 'Linux',         is_learning: false },
-  // Concepts
-  { category: 'Concepts',       tag: 'REST API',      is_learning: false },
-  { category: 'Concepts',       tag: 'JWT Auth',      is_learning: false },
-  { category: 'Concepts',       tag: 'RBAC',          is_learning: false },
-  { category: 'Concepts',       tag: 'Async Queues',  is_learning: false },
-  { category: 'Concepts',       tag: 'Service Layer', is_learning: false },
-];
-
-const EXPERIENCE: Experience[] = [
-  {
-    role: 'Software Development Engineer',
-    company: 'Remedio Technologies, Kolkata',
-    date_range: 'Dec 2025 — Present',
-    is_current: true,
-    points: '<ul><li>Extended a Laravel and Node.js/Angular.js e-commerce platform with shipment dispatching, stock verification, and CRM Webhook integrations, improving lead generation pipeline efficiency.</li><li>Implemented JWT-based user authentication and Role-Based Authorization (RBAC) across multiple REST API services, strengthening application security.</li><li>Optimized Angular and Node.js application load times by up to 70% through front-end performance tuning and elimination of code duplication.</li><li>Built a GenAI microservice using FastAPI and Google Gemini API, integrated into a Laravel + Amazon S3 ERP system for automated product visualization.</li></ul>',
-  },
-  {
-    role: 'Junior Software Development Engineer',
-    company: 'Digital Aptech, Kolkata',
-    date_range: 'Mar 2024 — Nov 2025',
-    is_current: false,
-    points: '<ul><li>Developed and maintained RESTful APIs using Laravel for an e-commerce shipping platform, implementing Eloquent ORM relationships, custom middleware, and Form Request validation.</li><li>Applied Service Layer Architecture to separate business logic from controllers, improving code maintainability and scalability.</li><li>Used Laravel Queues and Jobs for asynchronous shipment processing, increasing system throughput and reliability.</li></ul>',
-  },
-];
-
-const BIO: Bio[] = [
-  { paragraph: '<p>Full-Stack Developer with 2+ years of experience in WordPress, Laravel, React JS, Node.js, Express.js, and Angular. Experienced in building and maintaining RESTful APIs, implementing JWT-based authentication, Service Layer Architecture, and Async Queue processing.</p>' },
-  { paragraph: '<p>I\'ve built GenAI microservices using FastAPI and Google Gemini API, and enjoy working across the entire stack — from designing a database schema in the morning to tuning frontend performance in the afternoon.</p>' },
-  { paragraph: '<p>When I\'m not writing code, I\'m probably thinking about the next side project, exploring Linux configurations, or researching something niche on the internet.</p>' },
-];
-
-export const EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'dsuborno0@gmail.com';
-
-export function usePortfolioData() {
-  const [projects, setProjects] = useState<Project[]>(PROJECTS);
-  const [skills, setSkills] = useState<Skill[]>(SKILLS);
-  const [experience, setExperience] = useState<Experience[]>(EXPERIENCE);
-  const [bio, setBio] = useState<Bio[]>(BIO);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    fetch('https://sd.my-board.org/wp-json/portfolio/v1/options')
-      .then(res => res.json())
-      .then(data => {
-        if (data.projects) setProjects(data.projects);
-        if (data.skills) setSkills(data.skills);
-        if (data.experience) setExperience(data.experience);
-        if (data.bio) setBio(data.bio);
-      })
-      .catch(console.error)
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
+export function usePortfolioData(): PortfolioData & { loading: boolean } {
   return {
+    ...data,
     email: EMAIL,
-    projects,
-    skills,
-    experience,
-    bio,
-    loading,
+    loading: false,
   };
 }

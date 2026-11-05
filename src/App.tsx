@@ -1,237 +1,117 @@
 import './App.css';
-import { useEffect } from 'react';
-import { Code, Layers, Database, Terminal, Cpu } from 'lucide-react';
-import Projects from './components/Projects/projects';
-import Contact from './components/Contact/contact';
-import { usePortfolioData, type Skill } from './hooks/usePortfolioData';
-import ShaderGradientCanvas from './components/Visuals/ShaderGradientCanvas';
-import Hero3DScene from './components/Visuals/Hero3DScene';
+import { useEffect, useState } from 'react';
+import { usePortfolioData } from './hooks/usePortfolioData';
+import IntroLoader from './components/UI/IntroLoader';
+import ScrollProgress from './components/UI/ScrollProgress';
+import CustomCursor from './components/UI/CustomCursor';
+import Toast from './components/UI/Toast';
+import BackToTop from './components/UI/BackToTop';
+import ConfettiCanvas from './components/Visuals/ConfettiCanvas';
+import Nav from './components/Navigation/Nav';
+import MobileMenu from './components/Navigation/MobileMenu';
+import Hero from './components/Sections/Hero';
+import Marquee from './components/Sections/Marquee';
+import About from './components/Sections/About';
+import Toolbox from './components/Sections/Toolbox';
+import Projects from './components/Sections/Projects';
+import Experience from './components/Sections/Experience';
+import Contact from './components/Sections/Contact';
+import Footer from './components/Footer/Footer';
 
 export default function App() {
-  const { projects, skills, experience, bio, loading } = usePortfolioData();
+  const {
+    email,
+    stats,
+    coreSkills,
+    skillCategories,
+    projects,
+    experiences,
+    bio,
+  } = usePortfolioData();
 
-  const skillGroups = skills.reduce((acc: Record<string, Skill[]>, skill: Skill) => {
-    if (!acc[skill.category]) acc[skill.category] = [];
-    acc[skill.category].push(skill);
-    return acc;
-  }, {});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Body class toggle for mobile menu
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => {
+      const next = !prev;
+      document.body.classList.toggle('menu-open', next);
+      return next;
+    });
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('menu-open');
+  };
+
+  // Scroll reveal observer for elements with .reveal or .core-card
   useEffect(() => {
-    if (loading) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const elements = document.querySelectorAll('.reveal, .core-card');
 
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    if (reduceMotion) {
+      elements.forEach((el) => el.classList.add('in'));
+      return;
+    }
 
-    const spy = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
-          });
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        });
+      },
+      { threshold: 0.14 }
+    );
 
-    sections.forEach(s => spy.observe(s));
-
-    const reveals = document.querySelectorAll('.reveal');
-    const ro = new IntersectionObserver(entries => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('on'), i * 60);
-          ro.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(el => ro.observe(el));
+    elements.forEach((el) => io.observe(el));
 
     return () => {
-      spy.disconnect();
-      ro.disconnect();
+      io.disconnect();
     };
-  }, [loading]);
-
-  if (loading) return <div style={{ padding: '2rem', fontFamily: 'monospace' }}>Loading...</div>;
+  }, []);
 
   return (
     <>
-      {/* NAV */}
-      <nav>
-        <a href="#hero" className="nav-logo">S<span>.</span>Das</a>
-        <ul className="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      {/* Intro Loader */}
+      <IntroLoader />
 
-      {/* HERO */}
-      <section id="hero">
-        {/* Interactive Fluid WebGL Shader Gradient */}
-        <ShaderGradientCanvas opacity={0.5} speed={0.85} />
-        <div className="hero-gradient-fade" />
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
 
-        <div className="hero-container">
-          <div className="hero-text-col">
-            <p className="hero-eyebrow">// full-stack developer</p>
-            <h1 className="hero-name">Suborno Das<span className="cursor">_</span></h1>
-            <p className="hero-role">I build things for the web.</p>
-            <p className="hero-bio">
-              Crafting reliable backends and clean frontends — from Laravel APIs and Node.js services
-              to real-time, AI-integrated web apps. Based in West Bengal, India.
-            </p>
-            <div className="btn-row">
-              <a href="#projects" className="btn btn-primary">View Projects</a>
-              <a href="#contact" className="btn btn-ghost">Get in Touch</a>
-            </div>
-            <div className="hero-tech-chips">
-              <span className="hero-chip">Laravel</span>
-              <span className="hero-chip">Node.js</span>
-              <span className="hero-chip">React</span>
-              <span className="hero-chip">Three.js</span>
-              <span className="hero-chip">Next.js</span>
-              <span className="hero-chip">FastAPI</span>
-              <span className="hero-chip">MySQL</span>
-              <span className="hero-chip">PostgreSQL</span>
-            </div>
-          </div>
+      {/* Custom Cursor */}
+      <CustomCursor />
 
-          <div className="hero-visual-col">
-            <Hero3DScene />
-          </div>
-        </div>
+      {/* Confetti Layer */}
+      <ConfettiCanvas />
 
-        <div className="hero-scroll">
-          <span className="scroll-line"></span>
-          scroll to explore
-        </div>
-      </section>
+      {/* Toast Notification */}
+      <Toast />
 
-      <hr className="soft" />
+      {/* Navigation */}
+      <Nav isMenuOpen={isMenuOpen} onToggleMenu={toggleMenu} />
 
-      {/* ABOUT */}
-      <section id="about">
-        <p className="section-eyebrow reveal">01 / about</p>
-        <h2 className="section-title reveal">A bit about me</h2>
+      {/* Mobile Overlay Menu */}
+      <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
 
-        <div className="about-grid">
-          <div className="about-text reveal">
-            {bio.map((b, i) => (
-              <div key={i} dangerouslySetInnerHTML={{ __html: b.paragraph }} />
-            ))}
-          </div>
+      {/* Main Content */}
+      <main id="top">
+        <Hero stats={stats} />
+        <Marquee />
+        <About bio={bio} />
+        <Toolbox coreSkills={coreSkills} categories={skillCategories} />
+        <Projects projects={projects} />
+        <Experience experiences={experiences} />
+        <Contact email={email} />
+      </main>
 
-          <div className="fact-grid reveal">
-            <div className="fact-card">
-              <div className="fact-label">Location</div>
-              <div className="fact-value">West Bengal, India</div>
-            </div>
-            <div className="fact-card">
-              <div className="fact-label">Focus</div>
-              <div className="fact-value">Full-Stack Dev</div>
-            </div>
-            <div className="fact-card">
-              <div className="fact-label">Primary Stack</div>
-              <div className="fact-value">Laravel · Node.js</div>
-            </div>
-            <div className="fact-card">
-              <div className="fact-label">Status</div>
-              <div className="fact-value">Open to roles</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Footer */}
+      <Footer />
 
-      <hr className="soft" />
-
-      {/* SKILLS */}
-      <section id="skills">
-        <p className="section-eyebrow reveal">02 / skills</p>
-        <h2 className="section-title reveal">What I work with</h2>
-
-        <div className="skills-bento-grid">
-          {Object.entries(skillGroups).map(([category, tags], i) => (
-            <div
-              className={`skill-bento-card ${category === 'Concepts' ? 'bento-wide' : ''} reveal`}
-              key={i}
-            >
-              <div className="skill-card-header">
-                <div className="skill-card-title-group">
-                  <span className="skill-category-icon">
-                    {category === 'Languages' && <Code size={15} />}
-                    {category === 'Frameworks' && <Layers size={15} />}
-                    {category === 'Databases' && <Database size={15} />}
-                    {category === 'Tools & DevOps' && <Terminal size={15} />}
-                    {category === 'Concepts' && <Cpu size={15} />}
-                  </span>
-                  <h3 className="skill-group-label">{category}</h3>
-                </div>
-                <span className="skill-count">{tags.length} skills</span>
-              </div>
-
-              <div className="skill-tags">
-                {tags.map((skill, j) => (
-                  <span
-                    className={`tag ${skill.is_learning ? 'learning' : ''}`}
-                    key={j}
-                    title={skill.is_learning ? 'Currently learning' : `${skill.tag} (Production ready)`}
-                  >
-                    {skill.tag}
-                    {skill.is_learning && <span className="learning-indicator">↗</span>}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr className="soft" />
-
-      {/* PROJECTS */}
-      <section id="projects">
-        <p className="section-eyebrow reveal">03 / projects</p>
-        <h2 className="section-title reveal">Selected work</h2>
-        <Projects data={projects} />
-      </section>
-
-      <hr className="soft" />
-
-      {/* EXPERIENCE */}
-      <section id="experience">
-        <p className="section-eyebrow reveal">04 / experience</p>
-        <h2 className="section-title reveal">Where I've worked</h2>
-
-        <div className="timeline">
-          {experience.map((exp, i) => (
-            <div className="tl-item reveal" key={i}>
-              <div className="tl-date">{exp.date_range}</div>
-              <div className="tl-body">
-                <div className="tl-role">{exp.role}</div>
-                <div className="tl-company">{exp.company}</div>
-                <div
-                  className="tl-points"
-                  dangerouslySetInnerHTML={{ __html: exp.points }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr className="soft" />
-
-      {/* CONTACT */}
-      <Contact />
-
-      {/* FOOTER */}
-      <footer>
-        <span className="footer-side left">© 2026 Suborno Das</span>
-        <span className="footer-side right">Designed &amp; built by me</span>
-      </footer>
+      {/* Back to Top */}
+      <BackToTop />
     </>
   );
 }

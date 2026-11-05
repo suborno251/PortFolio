@@ -1,0 +1,145 @@
+{
+  "email": "suborno999@outlook.com",
+  "stats": [
+    { "value": 2, "suffix": "+", "label": "YEARS OF XP" },
+    { "value": 27, "label": "TECHNOLOGIES" },
+    { "value": 4, "label": "FEATURED BUILDS" },
+    { "value": 70, "suffix": "%", "label": "PERF GAIN SHIPPED" }
+  ],
+  "coreSkills": [
+    { "name": "Laravel · PHP", "pct": 90, "subtitle": "APIs, Eloquent, Queues" },
+    { "name": "Node.js · Express", "pct": 85, "subtitle": "Services, Webhooks" },
+    { "name": "React · Next.js", "pct": 84, "subtitle": "SPAs, SSR, performance" },
+    { "name": "TypeScript · JavaScript", "pct": 82, "subtitle": "Types, tooling" }
+  ],
+  "skillCategories": [
+    {
+      "title": "LANGUAGES",
+      "count": 5,
+      "skills": ["PHP", "TypeScript", "JavaScript", "Python", "Go"]
+    },
+    {
+      "title": "FRAMEWORKS",
+      "count": 7,
+      "skills": ["Laravel", "Node.js", "Express.js", "Next.js", "Angular", "FastAPI", "React"]
+    },
+    {
+      "title": "DATABASES",
+      "count": 4,
+      "skills": ["MySQL", "PostgreSQL", "MongoDB", "Redis"]
+    },
+    {
+      "title": "TOOLS & DEVOPS",
+      "count": 6,
+      "skills": ["Docker", "Git", "AWS S3", "Postman", "CI/CD", "Linux"]
+    },
+    {
+      "title": "CONCEPTS",
+      "count": 5,
+      "skills": ["REST API", "JWT Auth", "RBAC", "Async Queues", "Service Layer"]
+    }
+  ],
+  "projects": [
+    {
+      "meta": "/01 — LARAVEL · FULL-STACK",
+      "name": "Whistle",
+      "description": "A digital orthodontic care platform for invisible aligners. Streamlines 3D intraoral scan bookings across 450+ partner clinics, orthodontist consultations, and custom treatment tracking.",
+      "tags": ["Laravel", "PHP", "React.JS", "REST API", "Vite"],
+      "liveUrl": "https://whistle-lunv.onrender.com/",
+      "sourceUrl": "https://whistle-lunv.onrender.com/",
+      "visualType": "whistle",
+      "image": "/whistle.png",
+      "previewUrl": "whistle-lunv.onrender.com",
+      "badgeText": "VERIFIED — WHISTLE.IN",
+      "highlights": [
+        "Network of 450+ Partner Dental Clinics across India",
+        "Direct At-Home or In-Clinic 3D Scan Scheduling Engine",
+        "Interactive Smile Consultation & Dynamic Treatment Tracker"
+      ]
+    },
+    {
+      "meta": "/02 — NEXT.JS · LEGAL AI",
+      "name": "Verbatim AI",
+      "description": "Legal contract analysis platform with strict quote verification and citation highlighting. Cross-references LLM answers against raw PDF/DOCX source text to completely eliminate hallucinations.",
+      "tags": ["Next.js 16", "React 19", "Tailwind CSS", "TypeScript", "LLM Verification"],
+      "liveUrl": "https://verbatim-ai-ten.vercel.app/",
+      "sourceUrl": "https://github.com/suborno251/Verbatim-AI",
+      "visualType": "verbatim",
+      "image": "/verbatim.png",
+      "previewUrl": "verbatim-ai-ten.vercel.app",
+      "badgeText": "VERIFIED — VERBATIM.AI",
+      "highlights": [
+        "Strict Zero-Hallucination Quote Verification Engine",
+        "Interactive Citation Highlighting & Page Jumps in 150+ Page PDFs",
+        "Clause-Level Contract Diffing & Scanned Document Detection"
+      ]
+    },
+    {
+      "meta": "/03 — NODE.JS · POSTGRESQL · IOT",
+      "name": "FactoryIQ",
+      "description": "AI-powered worker productivity & CCTV camera activity dashboard. Ingests computer vision events, computes real-time worker efficiency scores, and tracks activity trends.",
+      "tags": ["React.JS", "Node.js", "Express", "PostgreSQL", "Docker", "TypeScript"],
+      "liveUrl": "https://camera-activity-frontend.vercel.app/",
+      "sourceUrl": "https://github.com/suborno251/Camera-Activity-Frontend",
+      "visualType": "factoryiq",
+      "image": "/factoryiq.png",
+      "previewUrl": "camera-activity-frontend.vercel.app",
+      "badgeText": "VERIFIED — FACTORYIQ",
+      "highlights": [
+        "Real-Time CCTV Event Stream Ingestion Engine",
+        "Automated Worker Productivity & Downtime Calculations",
+        "Containerized PostgreSQL Time-Series Backend"
+      ]
+    },
+    {
+      "meta": "/04 — MULTI-AGENT · ADVERSARIAL CONSENSUS",
+      "name": "No-Yes Man",
+      "description": "Adversarial multi-agent content pipeline where two distinct LLMs (Gemini & DeepSeek) debate, critique, and fact-check each other before producing a reconciled consensus manuscript.",
+      "tags": ["Next.JS", "React.JS", "Gemini", "DeepSeek", "Multi-Agent"],
+      "liveUrl": "https://no-yesman.vercel.app/",
+      "sourceUrl": "https://github.com/suborno251",
+      "visualType": "debate",
+      "image": "/noyesman.png",
+      "previewUrl": "no-yesman.vercel.app",
+      "badgeText": "VERIFIED — NO YES-MAN",
+      "highlights": [
+        "3-Stage Multi-Agent Adversarial Consensus Pipeline",
+        "Automated Fact-Checking & Bias Elimination (Gemini vs DeepSeek)",
+        "Publication-Ready Reconciled Manuscript Generation"
+      ]
+    }
+  ],
+  "experiences": [
+    {
+      "role": "Software Development Engineer",
+      "company": "Remedio Technologies · Kolkata",
+      "period": "● DEC 2025 — PRESENT",
+      "isCurrent": true,
+      "points": [
+        "Architected an end-to-end Voice AI RAG agent with real-time WebSocket audio streaming, streaming speech-to-text (Deepgram), agentic tool calling (DeepSeek), and Edge-TTS synthesis for automated product discovery and order tracking.",
+        "Built a GenAI image generation agent and microservice using FastAPI and Google Gemini API, integrated into a Laravel + Amazon S3 ERP system for automated product visualization and multi-part image processing.",
+        "Extended a Laravel and Node.js/Angular.js e-commerce platform with shipment dispatching, stock verification, and CRM webhook integrations, improving the lead generation pipeline.",
+        "Implemented JWT-based user authentication and Role-Based Authorization (RBAC) across multiple REST API services, strengthening application security.",
+        "Optimized Angular and Node.js application load times by up to 70% through front-end performance tuning and elimination of code duplication."
+      ],
+      "tags": ["Voice AI", "RAG", "GenAI", "Deepgram", "Gemini", "FastAPI", "Laravel", "Node.js", "WebSockets", "AWS S3"]
+    },
+    {
+      "role": "Junior Software Development Engineer",
+      "company": "Digital Aptech · Kolkata",
+      "period": "MAR 2024 — NOV 2025",
+      "isCurrent": false,
+      "points": [
+        "Developed and maintained RESTful APIs using Laravel for an e-commerce shipping platform, implementing Eloquent ORM relationships, custom middleware, and Form Request validation.",
+        "Applied Service Layer Architecture to separate business logic from controllers, improving code maintainability and scalability.",
+        "Used Laravel Queues and Jobs for asynchronous shipment processing, increasing system throughput and reliability."
+      ],
+      "tags": ["Laravel", "Eloquent ORM", "MySQL", "Queues & Jobs", "REST API"]
+    }
+  ],
+  "bio": [
+    "Full-Stack Developer with 2+ years of experience in WordPress, Laravel, React JS, Node.js, Express.js, and Angular. Experienced in building and maintaining RESTful APIs, implementing JWT-based authentication, Service Layer Architecture, and Async Queue processing.",
+    "I've built Voice AI RAG agents and GenAI image generation microservices using FastAPI, Google Gemini API, and Deepgram, and enjoy working across the entire stack — from designing a database schema in the morning to tuning frontend performance in the afternoon.",
+    "When I'm not writing code, I'm probably thinking about the next side project, exploring Linux configurations, or researching something niche on the internet."
+  ]
+}
