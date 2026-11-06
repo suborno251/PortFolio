@@ -17,6 +17,7 @@ import Projects from './components/Sections/Projects';
 import Experience from './components/Sections/Experience';
 import Contact from './components/Sections/Contact';
 import Footer from './components/Footer/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const {
@@ -112,6 +113,9 @@ export default function App() {
 
       {/* Back to Top */}
       <BackToTop />
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </>
   );
 }
