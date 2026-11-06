@@ -1,8 +1,8 @@
 {
   "email": "suborno999@outlook.com",
   "stats": [
-    { "value": 2, "suffix": "+", "label": "YEARS OF XP" },
-    { "value": 30, "suffix": "+", "label": "TECHNOLOGIES" },
+    { "value": 2.9, "suffix": "+", "label": "YEARS OF XP" },
+    { "value": 6, "suffix": "+", "label": "TECHNOLOGIES" },
     { "value": 4, "label": "FEATURED BUILDS" },
     { "value": 70, "suffix": "%", "label": "PERF GAIN SHIPPED" }
   ],

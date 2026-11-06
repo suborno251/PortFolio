@@ -1,5 +1,10 @@
 import { useState, type CSSProperties, type FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 import { showToast } from '../../utils/toast';
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 interface ContactProps {
   email: string;
@@ -9,6 +14,7 @@ export default function Contact({ email }: ContactProps) {
   const [name, setName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [isSending, setIsSending] = useState(false);
 
   const [errors, setErrors] = useState<{
     name?: string;
@@ -63,8 +69,40 @@ export default function Contact({ email }: ContactProps) {
       `${message.trim()}\n\n— ${name.trim()} (${userEmail.trim()})`
     );
 
-    showToast('OPENING YOUR MAIL APP — PRE-FILLED.', 'ok');
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    if (SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY) {
+      setIsSending(true);
+      emailjs
+        .send(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          {
+            from_name: name.trim(),
+            from_email: userEmail.trim(),
+            reply_to: userEmail.trim(),
+            message: message.trim(),
+            name: name.trim(),
+            email: userEmail.trim(),
+          },
+          PUBLIC_KEY
+        )
+        .then(() => {
+          showToast('MESSAGE SENT! I’LL GET BACK TO YOU SOON.', 'ok');
+          setName('');
+          setUserEmail('');
+          setMessage('');
+        })
+        .catch((err) => {
+          console.error('EmailJS error:', err);
+          showToast('EMAILJS FAILED — OPENING MAIL CLIENT AS FALLBACK.', 'err');
+          window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        })
+        .finally(() => {
+          setIsSending(false);
+        });
+    } else {
+      showToast('OPENING YOUR MAIL APP — PRE-FILLED.', 'ok');
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    }
   };
 
   const onMagneticMove = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -246,12 +284,17 @@ export default function Contact({ email }: ContactProps) {
               type="submit"
               className="btn btn-primary btn-block magnetic"
               data-cursor
+              disabled={isSending}
               onMouseMove={onMagneticMove}
               onMouseLeave={onMagneticLeave}
             >
-              SEND MESSAGE
+              {isSending ? 'SENDING…' : 'SEND MESSAGE'}
             </button>
-            <p className="f-note mono">OPENS YOUR MAIL APP, PRE-FILLED — NOTHING IS STORED.</p>
+            <p className="f-note mono">
+              {SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY
+                ? 'DELIVERED DIRECTLY TO MY INBOX VIA EMAILJS.'
+                : 'OPENS YOUR MAIL APP, PRE-FILLED — NOTHING IS STORED.'}
+            </p>
           </form>
         </div>
       </div>

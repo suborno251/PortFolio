@@ -82,9 +82,12 @@ export default function Hero({ stats }: HeroProps) {
       const t0 = performance.now();
       const dur = 1100;
 
+      const hasDecimal = target % 1 !== 0;
       const tick = (t: number) => {
         const k = Math.min(1, (t - t0) / dur);
-        const val = Math.round(target * (1 - Math.pow(1 - k, 3)));
+        const progress = 1 - Math.pow(1 - k, 3);
+        const rawVal = target * progress;
+        const val = k >= 1 ? target : (hasDecimal ? Number(rawVal.toFixed(1)) : Math.round(rawVal));
         setCounts((prev) => {
           const next = [...prev];
           next[idx] = val;
@@ -189,7 +192,7 @@ export default function Hero({ stats }: HeroProps) {
         className="st-yellow"
         style={{ top: '64%', right: '6%' }}
       >
-        2+&nbsp;YRS
+        2.9&nbsp;YRS
         <br />
         XP
       </DraggableSticker>
