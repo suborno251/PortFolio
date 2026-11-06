@@ -23,4 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 .env
+*.tex
 sync_config.jsonc

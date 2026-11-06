@@ -137,7 +137,7 @@ export default function Projects({ projects }: ProjectsProps) {
                               <span className="mono pv-whistle-ep">
                                 POST /api/v1/consultations/book
                               </span>
-                              <span className="mono pv-whistle-badge">450+ CLINICS</span>
+                              <span className="mono pv-whistle-badge">CLINIC DISPATCH</span>
                             </div>
                             <div className="pv-whistle-card">
                               <div className="pv-whistle-row">
@@ -173,7 +173,7 @@ export default function Projects({ projects }: ProjectsProps) {
                                 <span>Aligner Care</span>
                               </div>
                             </div>
-                            <div className="pv-stamp mono">VERIFIED — WHISTLE.IN</div>
+                            <div className="pv-stamp mono">DEMO — WHISTLE</div>
                           </div>
                         ) : proj.visualType === 'predictor' ? (
                           <div className="pv-ticket">
@@ -204,7 +204,7 @@ export default function Projects({ projects }: ProjectsProps) {
                               <span className="mono pv-verbatim-ep">
                                 POST /api/verify-quote · ENGINE
                               </span>
-                              <span className="mono pv-verbatim-badge">ZERO-HALLUCINATION</span>
+                              <span className="mono pv-verbatim-badge">HALLUCINATION GUARD</span>
                             </div>
                             <div className="pv-verbatim-card">
                               <div className="pv-verbatim-row">

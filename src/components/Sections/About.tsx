@@ -38,7 +38,7 @@ export default function About({ bio }: AboutProps) {
             </div>
             <div className="fact reveal" style={{ '--d': '.05s' } as CSSProperties}>
               <span className="mono">FOCUS</span>
-              <strong>Full-Stack Dev</strong>
+              <strong>Full-Stack &amp; Systems</strong>
             </div>
             <div className="fact reveal" style={{ '--d': '.1s' } as CSSProperties}>
               <span className="mono">PRIMARY STACK</span>
@@ -52,7 +52,7 @@ export default function About({ bio }: AboutProps) {
               <span className="mono">CURRENTLY</span>
               <p>
                 Building Voice AI RAG agents &amp; GenAI image generation tools at <strong>Remedio Technologies</strong> —
-                Laravel + Node.js e-commerce, real-time audio WebSocket pipelines, and FastAPI × Gemini microservices.
+                FastAPI × Gemini automated image pipelines, real-time WebSocket audio streaming, and high-throughput Node.js/Laravel backend systems.
               </p>
             </div>
           </div>
